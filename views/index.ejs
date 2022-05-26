@@ -1,0 +1,35 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/homenavbar.ejs') %>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Dev Blog Project</h1>
+      <p class="lead">Developed as part of a NodeJS course on Udemy, tough by Victor Lima</p>
+      <hr class="my-4">
+      <p>Uses NodeJS, Express, EJS and Bootstrap</p>
+      <a href="https://www.udemy.com/course/formacao-nodejs/" class="btn btn-primary btn-lg" role="button">Go to class page</a>
+    </div>
+    <hr>
+    <% articles.forEach(article => { %>
+      <div class="card">
+        <div class="card-header">
+          <h2><%= article.title %></h2>
+        </div>
+        <div class="card-body">
+          <a href="/<%= article.slug %>" class="btn btn-success">Read Article</a>
+        </div>
+      </div>
+      <br>
+    <% }) %>
+    <hr>
+    <div class="row">
+      <div class="col col-12">
+        <a style="float:right" href="/articles/page/2">Next >>></a>
+      </div>
+    </div>
+    <br>
+  </div>
+</body>
+
+<%- include ('partials/footer.ejs') %>

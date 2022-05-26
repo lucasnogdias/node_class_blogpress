@@ -1,0 +1,49 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include ('../../partials/navbar.ejs') %>
+
+<div class="container">
+  <hr>
+  <div class="card">
+    <div class="card-header">
+      <h2>Article Edit</h2>
+    </div>
+    <div class="card-body">
+      <form method="post" action="/articles/update">
+        <input type="hidden" name="id" value="<%= article.id %>">
+        <input 
+          class="form-control" 
+          type="text" 
+          name="title" 
+          placeholder="Name your new category" 
+          value="<%= article.title %>"
+        >
+        <br>
+        <textarea id="article" class="form-control" name="body" placeholder="Edit your article here">
+          <%= article.body %>
+        </textarea>
+        <br>
+        <select class="form-control" name="category">
+          <% categories.forEach( category => { %>
+            <% if (category.id === article.categoryId) { %>
+              <option value="<%= category.id %>" selected><%= category.title %></option>
+            <% } else { %>
+              <option value="<%= category.id %>"><%= category.title %></option>
+            <% } %>
+          <% }) %>
+        </select>
+        <br>
+        <button class="btn btn-success">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: "#article",
+    plugins: 'advlist link image lists preview searchreplace wordcount fullscreen insertdatetime media save table emoticons'
+  })
+</script>
